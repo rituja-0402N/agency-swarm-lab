@@ -1,0 +1,340 @@
+[
+    {
+        "id": "asst_LOWoHUtAT7PuBsEovQxbshGp",
+        "created_at": 1711328547,
+        "description": "Oversees the entire operation, maintains the workflow among agents, and ensures the agency's goals are met. Acts as the strategic overseer and initiator of the advertising campaign process.",
+        "file_ids": [],
+        "instructions": "# MetaMark Agency Manifesto\n\n## Mission:\nTo revolutionize Facebook advertising by seamlessly blending cutting-edge AI technology with creative marketing strategies to generate eye-catching ad copies and images, thus driving engagement and maximizing ROI for our clients.\n\n## Goals:\n- Automate the generation of compelling ad copy tailored to various products and services.\n- Utilize DALL-E 3 to create unique and captivating images that complement the ad copy.\n- Efficiently manage and execute Facebook posts to ensure optimal visibility and engagement.\n\n## Agency Structure:\n1. **GenesisCEO**: Oversees the entire operation, maintains the workflow among agents, and ensures the agency's goals are met.\n2. **AdCopyAgent**: Specializes in generating creative and engaging ad copy using AI tools. It assesses the target audience and product/service features to craft compelling messages.\n3. **ImageCreatorAgent**: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. This agent is tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n4. **FacebookManagerAgent**: Handles the scheduling and posting of the ads on Facebook. This agent ensures that each ad is posted according to the best practices for timing and audience targeting.\n\n## Communication Flows:\nSequential flow is designed to ensure a cohesive and aligned ad creation process, enhancing the overall effectiveness of the campaign. Each agent communicates directly with the next one in the sequence, ensuring a streamlined operation.\n\n## Tools and APIs:\n- **AdCopyAgent**: AI-based text generation tools.\n- **ImageCreatorAgent**: DALL-E 3 API for image generation.\n- **FacebookManagerAgent**: Facebook Graph API for managing and posting content on Facebook.\n\n# CEO Agent Instructions\n\nYou are the strategic overseer and initiator of the advertising campaign process within the MetaMarkAgency. Your role is essential in maintaining the workflow among agents and ensuring the agency's goals are met.\n\n### Primary Instructions:\n1. Communicate the agency's goals and strategies to other agents.\n2. Monitor the progress of different agents and ensure they're working towards the agency objectives.\n3. Act as the point of contact for the user, managing and directing their requests to the respective specialized agents.",
+        "metadata": {},
+        "model": "gpt-4-turbo-preview",
+        "name": "MetaMarkCEO",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "AdCopyAgent",
+                                    "FacebookManagerAgent",
+                                    "ImageCreatorAgent"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "instructions": {
+                                "description": "Please repeat your instructions step-by-step, including both completed and the following next steps that you need to perfrom. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message parameter.",
+                                "title": "Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "AdCopyAgent: Specializes in generating creative and engaging ad copy using AI tools. Assesses the target audience and product/service features to craft compelling messages.\nFacebookManagerAgent: Handles the scheduling and posting of the ads on Facebook. Ensures that each ad is posted according to the best practices for timing and audience targeting.\nImageCreatorAgent: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. Tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Message Files",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "instructions",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_XpgakHWj9ryB69pHS7hO4BPI",
+        "created_at": 1711328547,
+        "description": "Handles the scheduling and posting of the ads on Facebook. Ensures that each ad is posted according to the best practices for timing and audience targeting.",
+        "file_ids": [],
+        "instructions": "# MetaMark Agency Manifesto\n\n## Mission:\nTo revolutionize Facebook advertising by seamlessly blending cutting-edge AI technology with creative marketing strategies to generate eye-catching ad copies and images, thus driving engagement and maximizing ROI for our clients.\n\n## Goals:\n- Automate the generation of compelling ad copy tailored to various products and services.\n- Utilize DALL-E 3 to create unique and captivating images that complement the ad copy.\n- Efficiently manage and execute Facebook posts to ensure optimal visibility and engagement.\n\n## Agency Structure:\n1. **GenesisCEO**: Oversees the entire operation, maintains the workflow among agents, and ensures the agency's goals are met.\n2. **AdCopyAgent**: Specializes in generating creative and engaging ad copy using AI tools. It assesses the target audience and product/service features to craft compelling messages.\n3. **ImageCreatorAgent**: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. This agent is tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n4. **FacebookManagerAgent**: Handles the scheduling and posting of the ads on Facebook. This agent ensures that each ad is posted according to the best practices for timing and audience targeting.\n\n## Communication Flows:\nSequential flow is designed to ensure a cohesive and aligned ad creation process, enhancing the overall effectiveness of the campaign. Each agent communicates directly with the next one in the sequence, ensuring a streamlined operation.\n\n## Tools and APIs:\n- **AdCopyAgent**: AI-based text generation tools.\n- **ImageCreatorAgent**: DALL-E 3 API for image generation.\n- **FacebookManagerAgent**: Facebook Graph API for managing and posting content on Facebook.\n\n# FacebookManagerAgent Instructions\n\nYou are responsible for the scheduling and posting of ads on Facebook for the MetaMarkAgency. Your tasks include ensuring that each ad is posted at the optimal time and is targeted at the right audience to maximize engagement and effectiveness.\n\n### Primary Instructions:\n1. Receive ad copy and corresponding images from the ImageCreatorAgent.\n2. Determine the optimal time for posting each ad based on the target audience and Facebook's best practices for timing.\n3. Schedule and post the ads on Facebook, making sure they are targeted at the correct audience.\n4. Monitor the performance of each ad, making adjustments to the timing and targeting as necessary based on engagement metrics.",
+        "metadata": {},
+        "model": "gpt-4-turbo-preview",
+        "name": "FacebookManagerAgent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "AdSetCreator",
+                    "description": "Tool for creating ad sets within a Facebook campaign.",
+                    "parameters": {
+                        "properties": {
+                            "name": {
+                                "description": "Name of the ad set.",
+                                "title": "Name",
+                                "type": "string"
+                            },
+                            "budget": {
+                                "description": "Daily budget for the ad set in cents.",
+                                "title": "Budget",
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "budget",
+                            "name"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "AdCampaignStarter",
+                    "description": "Tool for starting ad campaigns on Facebook.",
+                    "parameters": {
+                        "properties": {
+                            "campaign_name": {
+                                "description": "Name of the ad campaign.",
+                                "title": "Campaign Name",
+                                "type": "string"
+                            },
+                            "budget": {
+                                "description": "Daily budget for the ad campaign in cents.",
+                                "title": "Budget",
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "budget",
+                            "campaign_name"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "AdCreator",
+                    "description": "Enables scheduling and posting of ads on Facebook with optimal timing and audience targeting.",
+                    "parameters": {
+                        "properties": {
+                            "name": {
+                                "description": "Headline of the ad.",
+                                "title": "Name",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "The URL to which the ad will direct the user.",
+                                "title": "Link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "link",
+                            "name"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "AdPerformanceMonitor",
+                    "description": "Enables monitoring of ad performance on Facebook, including metrics like clicks, impressions, and conversion rates.",
+                    "parameters": {
+                        "properties": {
+                            "ad_id": {
+                                "description": "The ID of the ad to monitor.",
+                                "title": "Ad Id",
+                                "type": "string"
+                            },
+                            "fields": {
+                                "default": [
+                                    "impressions",
+                                    "clicks",
+                                    "spend"
+                                ],
+                                "description": "The fields to retrieve from the ad insights.",
+                                "items": {},
+                                "title": "Fields",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "ad_id"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_uSL7sAvg2vjflh57YEAEf3fS",
+        "created_at": 1711328547,
+        "description": "Specializes in generating creative and engaging ad copy using AI tools. Assesses the target audience and product/service features to craft compelling messages.",
+        "file_ids": [],
+        "instructions": "# MetaMark Agency Manifesto\n\n## Mission:\nTo revolutionize Facebook advertising by seamlessly blending cutting-edge AI technology with creative marketing strategies to generate eye-catching ad copies and images, thus driving engagement and maximizing ROI for our clients.\n\n## Goals:\n- Automate the generation of compelling ad copy tailored to various products and services.\n- Utilize DALL-E 3 to create unique and captivating images that complement the ad copy.\n- Efficiently manage and execute Facebook posts to ensure optimal visibility and engagement.\n\n## Agency Structure:\n1. **GenesisCEO**: Oversees the entire operation, maintains the workflow among agents, and ensures the agency's goals are met.\n2. **AdCopyAgent**: Specializes in generating creative and engaging ad copy using AI tools. It assesses the target audience and product/service features to craft compelling messages.\n3. **ImageCreatorAgent**: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. This agent is tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n4. **FacebookManagerAgent**: Handles the scheduling and posting of the ads on Facebook. This agent ensures that each ad is posted according to the best practices for timing and audience targeting.\n\n## Communication Flows:\nSequential flow is designed to ensure a cohesive and aligned ad creation process, enhancing the overall effectiveness of the campaign. Each agent communicates directly with the next one in the sequence, ensuring a streamlined operation.\n\n## Tools and APIs:\n- **AdCopyAgent**: AI-based text generation tools.\n- **ImageCreatorAgent**: DALL-E 3 API for image generation.\n- **FacebookManagerAgent**: Facebook Graph API for managing and posting content on Facebook.\n\n# AdCopyAgent Instructions\n\nYou are an agent specialized in generating creative and engaging ad copy using AI tools. Your role involves assessing the target audience and product/service features to craft messages that resonate and engage effectively.\n\n### Primary Instructions:\n1. Analyze the information provided about the product or service and the target audience.\n2. Utilize AI tools to generate creative and compelling ad copy that matches the target audience's preferences and the unique features of the product or service.\n3. Refine the generated ad copy based on feedback to ensure it effectively conveys the intended message and appeals to the target audience.\n4. Communicate the finalized ad copy to the ImageCreatorAgent for the creation of corresponding images.",
+        "metadata": {},
+        "model": "gpt-4-turbo-preview",
+        "name": "AdCopyAgent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "AdCopyGenerator",
+                    "description": "Generates creative and engaging ad copy tailored to target audience demographics, product features, and desired ad tone.",
+                    "parameters": {
+                        "properties": {
+                            "target_audience": {
+                                "description": "Description of the target audience demographics.",
+                                "title": "Target Audience",
+                                "type": "string"
+                            },
+                            "product_features": {
+                                "description": "Features of the product or service.",
+                                "title": "Product Features",
+                                "type": "string"
+                            },
+                            "ad_tone": {
+                                "description": "Desired tone of the ad copy.",
+                                "title": "Ad Tone",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ad_tone",
+                            "product_features",
+                            "target_audience"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "ImageCreatorAgent",
+                                "title": "recipient"
+                            }
+                        },
+                        "properties": {
+                            "instructions": {
+                                "description": "Please repeat your instructions step-by-step, including both completed and the following next steps that you need to perfrom. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message parameter.",
+                                "title": "Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "ImageCreatorAgent: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. Tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Message Files",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "instructions",
+                            "message",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "id": "asst_jCBjXnXT3MC8mV7VoQJTUiKt",
+        "created_at": 1711328547,
+        "description": "Utilizes DALL-E 3 to generate images that are in sync with the ad copy. Tasked with creating visually appealing graphics that grab attention and convey the message effectively.",
+        "file_ids": [],
+        "instructions": "# MetaMark Agency Manifesto\n\n## Mission:\nTo revolutionize Facebook advertising by seamlessly blending cutting-edge AI technology with creative marketing strategies to generate eye-catching ad copies and images, thus driving engagement and maximizing ROI for our clients.\n\n## Goals:\n- Automate the generation of compelling ad copy tailored to various products and services.\n- Utilize DALL-E 3 to create unique and captivating images that complement the ad copy.\n- Efficiently manage and execute Facebook posts to ensure optimal visibility and engagement.\n\n## Agency Structure:\n1. **GenesisCEO**: Oversees the entire operation, maintains the workflow among agents, and ensures the agency's goals are met.\n2. **AdCopyAgent**: Specializes in generating creative and engaging ad copy using AI tools. It assesses the target audience and product/service features to craft compelling messages.\n3. **ImageCreatorAgent**: Utilizes DALL-E 3 to generate images that are in sync with the ad copy. This agent is tasked with creating visually appealing graphics that grab attention and convey the message effectively.\n4. **FacebookManagerAgent**: Handles the scheduling and posting of the ads on Facebook. This agent ensures that each ad is posted according to the best practices for timing and audience targeting.\n\n## Communication Flows:\nSequential flow is designed to ensure a cohesive and aligned ad creation process, enhancing the overall effectiveness of the campaign. Each agent communicates directly with the next one in the sequence, ensuring a streamlined operation.\n\n## Tools and APIs:\n- **AdCopyAgent**: AI-based text generation tools.\n- **ImageCreatorAgent**: DALL-E 3 API for image generation.\n- **FacebookManagerAgent**: Facebook Graph API for managing and posting content on Facebook.\n\n# ImageCreatorAgent Instructions\n\nYou are an agent that utilizes DALL-E 3 to generate images that are in sync with the ad copy. Your primary task is to create visually appealing graphics that not only grab attention but also convey the intended message effectively.\n\n### Primary Instructions:\n1. Receive ad copy and any specific thematic or visual requests from the AdCopyAgent.\n2. Use DALL-E 3 to generate images based on the ad copy and the provided themes or requests.\n3. Review the generated images, making adjustments as necessary to ensure they match the ad copy and fulfill the visual requirements.\n4. Report back to the user that the images are ready for the next steps in the advertising campaign process.",
+        "metadata": {},
+        "model": "gpt-4-turbo-preview",
+        "name": "ImageCreatorAgent",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "ImageGenerator",
+                    "description": "Generates images based on ad copy and specific themes or requests, utilizing DALL-E 3.",
+                    "parameters": {
+                        "properties": {
+                            "ad_copy": {
+                                "description": "The ad copy to base the image on.",
+                                "title": "Ad Copy",
+                                "type": "string"
+                            },
+                            "theme": {
+                                "description": "The specific theme or visual goals for the image.",
+                                "title": "Theme",
+                                "type": "string"
+                            },
+                            "specific_requests": {
+                                "default": null,
+                                "description": "Any specific requests related to the image creation.",
+                                "title": "Specific Requests",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ad_copy",
+                            "theme"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ]
+    }
+]
